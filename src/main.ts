@@ -63,8 +63,8 @@ if (yearEl) yearEl.textContent = String(new Date().getFullYear());
     const scrolled = Math.min(Math.max(window.scrollY / (max || 1), 0), 1);
     const t = easeInOutCubic(scrolled);
 
-    // Mix between light and dark
-    const bgMix = mixHex(light, dark, t);
+    // Mix between dark and light (reversed)
+    const bgMix = mixHex(dark, light, t);
     docEl.style.setProperty("--bg-mix", bgMix);
 
     // Adaptive text color based on perceived luminance

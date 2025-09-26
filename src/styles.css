@@ -164,16 +164,12 @@ a {
 .hero-inner {
   width: min(100% - 2 * var(--inset), var(--maxw));
   margin-inline: auto;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: clamp(24px, 6vw, 48px);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-@media (max-width: 900px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-  }
+  justify-content: center;
+  text-align: center;
+  gap: clamp(24px, 6vw, 48px);
 }
 
 .title {
@@ -184,6 +180,71 @@ a {
   font-size: clamp(28px, 5vw, 56px);
   margin: 0 0 16px 0;
   text-align: center;
+}
+
+/* Hero Title with Animation */
+.hero-title {
+  font-family: "Space Grotesk", "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-size: clamp(48px, 12vw, 120px);
+  margin: 0 0 32px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-title-text {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.8) 25%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.8) 75%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s ease-in-out infinite;
+  position: relative;
+}
+
+.hero-title-text::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shine 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
 }
 
 
@@ -199,34 +260,6 @@ a {
   flex-wrap: wrap;
 }
 
-.hero-card {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  padding: 18px;
-}
-
-.hero-card .stat {
-  display: grid;
-  gap: 6px;
-  text-align: center;
-}
-
-.stat-icon {
-  justify-self: center;
-  opacity: 0.7;
-  margin-top: 4px;
-}
-
-.stat .num {
-  font-size: clamp(22px, 4vw, 32px);
-  font-weight: 700;
-}
-
-.stat .label {
-  color: var(--muted);
-  font-size: 13px;
-}
 
 .glass {
   background: var(--glass);

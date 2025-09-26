@@ -275,64 +275,15 @@ a {
 }
 
 .about .container {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: var(--gap);
-}
-
-@media (max-width: 900px) {
-  .about .container {
-    grid-template-columns: 1fr;
-  }
-}
-
-.skills {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
-  gap: 12px;
-  margin: 16px 0 0 0;
-}
-
-.skill-item {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 300ms ease;
-  font-size: 14px;
+  justify-content: center;
 }
 
-.skill-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+.about .panel {
+  max-width: 800px;
+  width: 100%;
 }
 
-.skill-icon {
-  opacity: 0.8;
-  flex-shrink: 0;
-  transition: opacity 300ms ease;
-}
-
-.skill-item:hover .skill-icon {
-  opacity: 1;
-}
-
-@media (max-width: 600px) {
-  .skills {
-    grid-template-columns: 1fr;
-  }
-  
-  .skill-item {
-    font-size: 13px;
-  }
-}
 
 .projects .section-head {
   text-align: center;

@@ -1,38 +1,100 @@
-Here’s a concise README you can drop in as README.md.
+# BZS Software Website
 
-# Personal Portfolio (TypeScript)
+A bold, striking website design for a software development business, featuring large typography, clean layouts, and modern interactions.
 
-A clean, professional single‑page portfolio website built with HTML, CSS, and TypeScript. It showcases who I am, my skills, and selected projects with live previews, GitHub links, and “Live App” buttons.
+## Features
 
-Highlights
-- Subtle scroll‑reactive gradient background between #F3E9DC and #323B45
-- Glassmorphism UI with smooth reveal animations on scroll
-- Responsive layout: splash/hero, about + skills, and projects
-- Project cards include embedded previews, GitHub, and Live App links
-- Respects prefers‑reduced‑motion for accessibility
+- **Bold Typography**: Large, impactful text that commands attention
+- **Clean Layout**: Minimalist design with strategic use of whitespace
+- **Smooth Animations**: Subtle scroll effects and hover interactions
+- **Responsive Design**: Fully responsive across all devices
+- **Modern Tech Stack**: Pure HTML, CSS, and JavaScript - no framework dependencies
 
-Tech
-- HTML + CSS for structure and styling
-- TypeScript for scroll effects, color interpolation, and animations
-- No frameworks required
+## Design Philosophy
 
-Project structure
-- index.html — markup for all sections
-- styles.css — styles and glass UI
-- main.ts — TypeScript for background + reveal animations
-- tsconfig.json — TypeScript config
-- package.json — scripts and dev dependencies
+This website embodies a design philosophy centered on:
+- Bold, confident typography
+- Strategic color blocking
+- Generous whitespace
+- Smooth, purposeful animations
+- Clean, semantic HTML structure
 
-Quick start
-- npm install
-- npm run build
-- Open index.html in your browser
-- Optional: npm run serve to start a local server
+## Getting Started
 
-Customize
-- Edit text, links, and project cards in index.html
-- Replace iframe src with your live app URLs
-- Tweak colors, spacing, and glass styles in styles.css
+### Prerequisites
 
-Deploy
-- Build (npm run build), then upload index.html, styles.css, and main.js to any static host (GitHub Pages, Netlify, Vercel, etc.).
+- A modern web browser
+- (Optional) Node.js for running a local development server
+
+### Installation
+
+1. Clone or download this repository
+2. Open `index.html` in your browser, or
+3. Run a local development server:
+
+```bash
+# Using npx (no installation required)
+npx live-server --port=3000
+
+# Or install live-server globally
+npm install -g live-server
+live-server --port=3000
+```
+
+## Project Structure
+
+```
+bzssoftware_v2/
+├── index.html          # Main HTML structure
+├── styles.css          # All styling and animations
+├── script.js           # Interactive features and animations
+├── package.json        # Project dependencies
+└── README.md          # This file
+```
+
+## Customization
+
+### Colors
+
+Edit the CSS variables in `styles.css`:
+
+```css
+:root {
+    --color-bg-light: #f5f5f0;
+    --color-bg-dark: #2d4a4a;
+    --color-text-dark: #1a1a1a;
+    --color-text-light: #ffffff;
+    --color-accent: #8bc34a;
+}
+```
+
+### Typography
+
+The site uses the Inter font family from Google Fonts. You can change this in the `<head>` of `index.html` and update the CSS variable.
+
+### Content
+
+All content is in `index.html`. Simply update the text, images, and links as needed.
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Performance
+
+- Minimal dependencies
+- Optimized CSS animations
+- Lazy-loaded images (via Intersection Observer)
+- Smooth scroll behavior
+
+## License
+
+MIT License - feel free to use this design for your own projects!
+
+## Credits
+
+Design inspired by bold, modern web design trends. Built with care by BZS Software.
+

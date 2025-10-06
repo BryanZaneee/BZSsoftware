@@ -1,17 +1,22 @@
 {
-  "name": "portfolio-ts",
+  "name": "bzssoftware-website",
   "version": "1.0.0",
-  "private": true,
+  "description": "BZS Software - Bold, striking software business website",
+  "main": "index.html",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "build:ts": "tsc",
-    "watch": "tsc -w"
+    "start": "npx live-server --port=3000",
+    "dev": "npx live-server --port=3000 --watch=."
   },
+  "keywords": [
+    "website",
+    "portfolio",
+    "software",
+    "business"
+  ],
+  "author": "BZS Software",
+  "license": "MIT",
   "devDependencies": {
-    "http-server": "^14.1.1",
-    "typescript": "^5.5.0",
-    "vite": "^7.1.2"
+    "live-server": "^1.2.2"
   }
 }
+

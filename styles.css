@@ -1,0 +1,842 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-bg-light: #f5f5f0;
+    --color-bg-dark: #2d4a4a;
+    --color-text-dark: #1a1a1a;
+    --color-text-light: #ffffff;
+    --color-accent: #8bc34a;
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg-light);
+    z-index: 1000;
+    padding: 30px 0;
+    transition: padding 0.3s ease;
+}
+
+.header.scrolled {
+    padding: 20px 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    color: var(--color-accent);
+    font-size: 20px;
+    line-height: 1;
+}
+
+.logo-text {
+    line-height: 1;
+}
+
+.nav {
+    display: flex;
+    gap: 50px;
+}
+
+.nav a {
+    color: var(--color-text-dark);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    transition: opacity 0.3s ease;
+    position: relative;
+}
+
+.nav a:hover {
+    opacity: 0.6;
+}
+
+/* Hero Section */
+.hero {
+    padding: 180px 0 100px;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 100px;
+    align-items: center;
+}
+
+.showreel-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.showreel-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.showreel-label {
+    padding: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.hero-title {
+    font-size: clamp(60px, 8vw, 110px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 120px 0;
+}
+
+.cta-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.cta-text {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    flex: 1;
+}
+
+.cta-links {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-top: 20px;
+}
+
+.cta-link {
+    color: var(--color-text-dark);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-bottom: 2px solid var(--color-text-dark);
+    padding-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease;
+}
+
+.cta-link:hover {
+    transform: translateX(5px);
+}
+
+.arrow {
+    font-size: 20px;
+}
+
+/* Brand Section */
+.brand-section {
+    background-color: var(--color-bg-dark);
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.brand-marquee {
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+    color: var(--color-text-light);
+    font-size: clamp(80px, 12vw, 160px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+}
+
+/* Black text for app showcase marquee */
+.app-marquee-section .marquee-content {
+    color: var(--color-text-dark);
+}
+
+.brand-text {
+    padding: 0 40px;
+}
+
+.brand-symbol {
+    color: var(--color-accent);
+    padding: 0 40px;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* About Section */
+.about-section {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+    padding: 120px 0 180px;
+}
+
+.about-content {
+    max-width: 900px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    letter-spacing: 0.05em;
+}
+
+.about-intro {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 80px;
+    opacity: 0.95;
+}
+
+.about-idealist {
+    margin-top: 60px;
+}
+
+.subsection-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.about-text {
+    font-size: 17px;
+    line-height: 1.8;
+    opacity: 0.95;
+}
+
+.about-text strong {
+    font-weight: 700;
+}
+
+/* App Showcase Sections */
+.app-marquee-section {
+    background-color: var(--color-bg-light);
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.app-section {
+    padding: 140px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-section-light {
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+}
+
+.app-section-dark {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+}
+
+.app-section-accent {
+    background-color: #1a1a1a;
+    color: var(--color-text-light);
+}
+
+.app-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+}
+
+.app-number {
+    font-size: clamp(80px, 12vw, 140px);
+    font-weight: 900;
+    line-height: 1;
+    opacity: 0.15;
+    letter-spacing: -0.03em;
+}
+
+.app-section-dark .app-number,
+.app-section-accent .app-number {
+    opacity: 0.2;
+}
+
+.app-title {
+    font-size: clamp(50px, 8vw, 90px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.app-icon {
+    width: clamp(40px, 6vw, 70px);
+    height: clamp(40px, 6vw, 70px);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.app-title:hover .app-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.app-description {
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    max-width: 700px;
+}
+
+.live-app-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 50px;
+    border: 2px solid var(--color-accent);
+    transition: all 0.3s ease;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+.live-app-button:hover {
+    background-color: transparent;
+    color: var(--color-text-light);
+    transform: translateY(-2px);
+}
+
+.app-section-light .live-app-button:hover {
+    color: var(--color-text-dark);
+}
+
+.live-app-button .button-text {
+    position: relative;
+    z-index: 1;
+}
+
+.app-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tag {
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.app-section-light .tag {
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tag:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-text-dark);
+}
+
+/* Contact Chat Section */
+.contact-section {
+    background-color: #0a0e27;
+    padding: 120px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.contact-chat-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.chat-container {
+    background-color: transparent;
+    border-radius: 12px;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.chat-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.chat-message {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bot-message {
+    justify-content: flex-start;
+}
+
+.user-message {
+    justify-content: flex-end;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(139, 195, 74, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatar-indicator {
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+.message-bubble {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--color-text-light);
+    padding: 16px 20px;
+    border-radius: 20px;
+    max-width: 600px;
+    font-size: 16px;
+    line-height: 1.6;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-message .message-bubble {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--color-text-dark);
+    border-color: transparent;
+}
+
+.chat-link {
+    color: var(--color-accent);
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+
+.chat-link:hover {
+    opacity: 0.8;
+}
+
+.chat-input-wrapper {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-input {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-text-light);
+    font-size: 16px;
+    font-family: var(--font-primary);
+    padding: 12px 0;
+}
+
+.chat-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.chat-send-button {
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.chat-send-button:hover {
+    transform: scale(1.1);
+    background-color: #a0d468;
+}
+
+.chat-send-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--color-text-dark);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-text-dark);
+    color: var(--color-text-light);
+    padding: 60px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer .logo {
+    color: var(--color-text-light);
+    margin-bottom: 10px;
+}
+
+.footer-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 12px;
+}
+
+.footer-personal {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 8px;
+}
+
+.footer-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    border-bottom: 1px solid var(--color-accent);
+}
+
+.footer-link:hover {
+    opacity: 0.8;
+}
+
+.footer-right {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 40px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .hero-left {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .cta-content {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .app-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .app-number {
+        font-size: 80px;
+    }
+
+    .app-section {
+        padding: 100px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 30px;
+    }
+
+    .nav {
+        gap: 30px;
+    }
+
+    .nav a {
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 140px 0 80px;
+    }
+
+    .hero-title {
+        font-size: 50px;
+    }
+
+    .cta-section {
+        padding: 80px 0;
+    }
+
+    .cta-text {
+        font-size: 28px;
+    }
+
+    .brand-section,
+    .app-marquee-section {
+        padding: 60px 0;
+    }
+
+    .marquee-content {
+        font-size: 60px;
+    }
+
+    .about-section {
+        padding: 80px 0 120px;
+    }
+
+    .app-section {
+        padding: 80px 0;
+    }
+
+    .app-title {
+        font-size: 40px;
+        margin-bottom: 20px;
+        gap: 12px;
+    }
+
+    .app-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .app-description {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .app-number {
+        font-size: 60px;
+    }
+
+    .live-app-button {
+        font-size: 15px;
+        padding: 12px 28px;
+    }
+
+    .contact-section {
+        padding: 80px 0;
+    }
+
+    .chat-container {
+        padding: 30px 15px;
+    }
+
+    .message-bubble {
+        font-size: 15px;
+        padding: 14px 18px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 40px;
+    }
+
+    .cta-text {
+        font-size: 24px;
+    }
+
+    .app-title {
+        font-size: 36px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .app-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .app-description {
+        font-size: 15px;
+    }
+
+    .app-number {
+        font-size: 50px;
+    }
+
+    .live-app-button {
+        font-size: 15px;
+        padding: 14px 30px;
+    }
+
+    .tag {
+        padding: 10px 18px;
+        font-size: 13px;
+    }
+
+    .contact-section {
+        padding: 60px 0;
+    }
+
+    .chat-container {
+        padding: 20px 10px;
+        max-height: 500px;
+    }
+
+    .message-bubble {
+        font-size: 14px;
+        padding: 12px 16px;
+        max-width: 90%;
+    }
+
+    .message-avatar {
+        width: 35px;
+        height: 35px;
+    }
+
+    .avatar-indicator {
+        width: 10px;
+        height: 10px;
+    }
+
+    .chat-input-wrapper {
+        padding: 15px;
+    }
+
+    .chat-input {
+        font-size: 15px;
+    }
+
+    .chat-send-button {
+        width: 44px;
+        height: 44px;
+    }
+}
+

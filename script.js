@@ -1,3 +1,28 @@
+// Hero Carousel
+function initHeroCarousel() {
+    const images = document.querySelectorAll('.carousel-image');
+    let currentIndex = 0;
+    
+    if (images.length <= 1) return; // No need for carousel if only one image
+    
+    // Change image every 4 seconds
+    setInterval(() => {
+        // Remove active class from current image
+        images[currentIndex].classList.remove('active');
+        
+        // Move to next image
+        currentIndex = (currentIndex + 1) % images.length;
+        
+        // Add active class to next image
+        images[currentIndex].classList.add('active');
+    }, 4000);
+}
+
+// Initialize carousel when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    initHeroCarousel();
+});
+
 // Header scroll effect
 const header = document.querySelector('.header');
 let lastScroll = 0;
@@ -65,7 +90,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Dynamic cursor effect (optional enhancement)
+// Dynamic cursor effect with color detection
 const createCursor = () => {
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
@@ -81,7 +106,7 @@ const createCursor = () => {
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, border-color 0.3s ease;
             display: none;
         }
         
@@ -92,27 +117,72 @@ const createCursor = () => {
             body {
                 cursor: none;
             }
-            a, button {
+            a, button, input, textarea {
                 cursor: none;
             }
         }
     `;
     document.head.appendChild(cursorStyle);
     
+    // Function to determine if background is very dark (needs white cursor)
+    const isVeryDarkBackground = (element) => {
+        const bgColor = window.getComputedStyle(element).backgroundColor;
+        
+        // If background is transparent, check parent
+        if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
+            if (element.parentElement) {
+                return isVeryDarkBackground(element.parentElement);
+            }
+            return false;
+        }
+        
+        // Extract RGB values
+        const rgb = bgColor.match(/\d+/g);
+        if (rgb && rgb.length >= 3) {
+            // Calculate brightness using luminance formula
+            const brightness = (0.299 * rgb[0]) + (0.587 * rgb[1]) + (0.114 * rgb[2]);
+            // Only very dark backgrounds (brightness < 50) get white cursor
+            // This keeps teal sections with black cursor, but makes white cursor for black/very dark sections
+            return brightness < 50;
+        }
+        
+        return false;
+    };
+    
+    // Update cursor position and color on mouse move
     document.addEventListener('mousemove', (e) => {
         cursor.style.left = e.clientX - 10 + 'px';
         cursor.style.top = e.clientY - 10 + 'px';
+        
+        // Get element under cursor
+        const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+        
+        if (elementUnderCursor) {
+            // Check if hovering over very dark background
+            if (isVeryDarkBackground(elementUnderCursor)) {
+                cursor.style.borderColor = '#ffffff';
+            } else {
+                cursor.style.borderColor = '#1a1a1a';
+            }
+        }
     });
     
+    // Handle hover effects for interactive elements
     document.querySelectorAll('a, button').forEach(el => {
         el.addEventListener('mouseenter', () => {
             cursor.style.transform = 'scale(1.5)';
-            cursor.style.borderColor = '#8bc34a';
+            
+            // Check if the interactive element is on a dark background
+            if (isVeryDarkBackground(el)) {
+                cursor.style.borderColor = '#8bc34a';
+            } else {
+                cursor.style.borderColor = '#8bc34a';
+            }
         });
         
         el.addEventListener('mouseleave', () => {
             cursor.style.transform = 'scale(1)';
-            cursor.style.borderColor = '#1a1a1a';
+            // Color will be updated by mousemove event
         });
     });
 };

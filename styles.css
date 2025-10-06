@@ -330,6 +330,19 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
+}
+
+.coming-soon-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: 700;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .app-icon {
@@ -539,8 +552,10 @@ body {
     gap: 15px;
     padding: 20px;
     background-color: transparent;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    align-items: center;
 }
 
 .chat-input {
@@ -556,6 +571,23 @@ body {
 
 .chat-input::placeholder {
     color: rgba(255, 255, 255, 0.4);
+}
+
+.chat-skip-button {
+    background-color: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+    font-family: var(--font-primary);
+    cursor: pointer;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    flex-shrink: 0;
+}
+
+.chat-skip-button:hover {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .chat-send-button {
@@ -716,6 +748,11 @@ body {
         gap: 12px;
     }
 
+    .coming-soon-badge {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
     .app-icon {
         width: 35px;
         height: 35px;
@@ -778,6 +815,11 @@ body {
         flex-wrap: wrap;
     }
 
+    .coming-soon-badge {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+
     .app-icon {
         width: 30px;
         height: 30px;
@@ -828,10 +870,17 @@ body {
 
     .chat-input-wrapper {
         padding: 15px;
+        flex-wrap: wrap;
     }
 
     .chat-input {
         font-size: 15px;
+        min-width: 200px;
+    }
+
+    .chat-skip-button {
+        font-size: 13px;
+        padding: 6px 10px;
     }
 
     .chat-send-button {
@@ -839,4 +888,3 @@ body {
         height: 44px;
     }
 }
-

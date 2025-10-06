@@ -133,15 +133,18 @@
                             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
                             <circle cx="12" cy="13" r="4"></circle>
                         </svg>
+                        <span class="coming-soon-badge">Coming Soon</span>
                     </h2>
                     <p class="app-description">
-                        AI-powered photo editing with SOTA character consistency. 
+                        Cross-platform AI-powered photo editing with SOTA character consistency. 
                         Transform your images with Photoshop-quality edits using 
-                        natural language commands. Professional results, zero complexity.
+                        natural language commands. Available on iOS, Android, and Web. 
+                        Professional results, zero complexity.
                     </p>
                     <div class="app-tags">
                         <span class="tag">AI Photo Editing</span>
                         <span class="tag">Character Consistency</span>
+                        <span class="tag">Cross-Platform</span>
                         <span class="tag">Natural Language</span>
                     </div>
                 </div>
@@ -158,8 +161,8 @@
                     <h2 class="app-title">
                         INFINICHAT 
                         <svg class="app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                            <path d="M2 12h20"></path>
+                            <path d="M6.5 12c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5S6.5 14.5 6.5 12zm11 0c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5z"/>
+                            <path d="M6.5 12c0-2.5-2-4.5-4.5-4.5S-2.5 9.5-2.5 12s2 4.5 4.5 4.5 4.5-2 4.5-4.5z"/>
                         </svg>
                     </h2>
                     <p class="app-description">
@@ -219,14 +222,7 @@
                         <div class="message-avatar">
                             <span class="avatar-indicator"></span>
                         </div>
-                        <div class="message-bubble">Have a project in mind? A collaboration proposal? Or do you just want to get in touch?</div>
-                    </div>
-                    
-                    <div class="chat-message bot-message">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble">Click here to send me a message.</div>
+                        <div class="message-bubble">Want to work together? Click here to send a message.</div>
                     </div>
                     
                     <div class="chat-message bot-message">
@@ -241,11 +237,11 @@
                         </div>
                     </div>
                     
-                    <div class="chat-message user-message">
-                        <div class="message-bubble">Let's go!</div>
+                    <div class="chat-message user-message" id="lets-do-it-message" style="display: none;">
+                        <div class="message-bubble">Let's do it!</div>
                     </div>
                     
-                    <div class="chat-message bot-message">
+                    <div class="chat-message bot-message" id="name-question" style="display: none;">
                         <div class="message-avatar">
                             <span class="avatar-indicator"></span>
                         </div>
@@ -299,6 +295,28 @@
                         <div class="message-bubble"></div>
                     </div>
                     
+                    <div class="chat-message bot-message" id="work-question" style="display: none;">
+                        <div class="message-avatar">
+                            <span class="avatar-indicator"></span>
+                        </div>
+                        <div class="message-bubble">Where do you currently work?</div>
+                    </div>
+                    
+                    <div class="chat-message user-message" id="user-work-message" style="display: none;">
+                        <div class="message-bubble"></div>
+                    </div>
+                    
+                    <div class="chat-message bot-message" id="role-question" style="display: none;">
+                        <div class="message-avatar">
+                            <span class="avatar-indicator"></span>
+                        </div>
+                        <div class="message-bubble"></div>
+                    </div>
+                    
+                    <div class="chat-message user-message" id="user-role-message" style="display: none;">
+                        <div class="message-bubble"></div>
+                    </div>
+                    
                     <div class="chat-message bot-message" id="final-message" style="display: none;">
                         <div class="message-avatar">
                             <span class="avatar-indicator"></span>
@@ -307,16 +325,16 @@
                     </div>
                 </div>
                 
-                <!-- Form submissions currently use mailto. To use Formspree instead: 
-                     1. Sign up at formspree.io 
-                     2. Create a form and get your form ID
-                     3. Replace YOUR_FORM_ID in the action URL below
-                     4. Remove the mailto code in script.js (lines 239-249) -->
-                <form id="contact-form" class="chat-input-wrapper" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <!-- Contact form sends directly to your email via Formspree -->
+                <form id="contact-form" class="chat-input-wrapper" action="https://formspree.io/f/xjkaojoz" method="POST">
                     <input type="hidden" name="name" id="form-name">
-                    <input type="hidden" name="email" id="form-email">
+                    <input type="hidden" name="_replyto" id="form-email">
+                    <input type="hidden" name="email" id="form-email-copy">
                     <input type="hidden" name="phone" id="form-phone">
+                    <input type="hidden" name="workplace" id="form-workplace">
+                    <input type="hidden" name="role" id="form-role">
                     <input type="text" class="chat-input" id="chat-input" placeholder="Type here">
+                    <button type="button" class="chat-skip-button" id="skip-button" style="display: none;">Skip question</button>
                     <button type="button" class="chat-send-button" id="send-button">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -354,4 +372,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

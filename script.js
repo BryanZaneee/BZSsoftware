@@ -130,10 +130,15 @@ let chatStep = 0;
 let userName = '';
 let userEmail = '';
 let userPhone = '';
+let userWorkplace = '';
+let userRole = '';
+let chatStarted = false;
 
 const chatInput = document.getElementById('chat-input');
 const sendButton = document.getElementById('send-button');
+const skipButton = document.getElementById('skip-button');
 const chatContainer = document.querySelector('.chat-container');
+const contactForm = document.getElementById('contact-form');
 
 // Email validation regex
 function isValidEmail(email) {
@@ -160,6 +165,125 @@ function showMessage(elementId) {
         element.style.display = 'flex';
         scrollToBottom();
     }
+}
+
+function hideSkipButton() {
+    skipButton.style.display = 'none';
+}
+
+function showSkipButton() {
+    skipButton.style.display = 'block';
+}
+
+function startChat() {
+    if (!chatStarted) {
+        chatStarted = true;
+        showMessage('lets-do-it-message');
+        setTimeout(() => {
+            // Show the "What is your name?" message
+            showMessage('name-question');
+        }, 800);
+    }
+}
+
+function handleSkip() {
+    if (chatStep === 2) {
+        // Skip phone number
+        userPhone = 'Skipped';
+        document.querySelector('#user-phone-message .message-bubble').textContent = 'I will pass on this one';
+        showMessage('user-phone-message');
+        hideSkipButton();
+        
+        setTimeout(() => {
+            showMessage('work-question');
+            showSkipButton();
+        }, 500);
+        
+        chatStep = 3;
+    } else if (chatStep === 3) {
+        // Skip workplace
+        userWorkplace = 'Skipped';
+        document.querySelector('#user-work-message .message-bubble').textContent = 'I\'m opting for mystery';
+        showMessage('user-work-message');
+        hideSkipButton();
+        
+        setTimeout(() => {
+            document.querySelector('#role-question .message-bubble').textContent = 'What do you do at your current workplace?';
+            showMessage('role-question');
+            showSkipButton();
+        }, 500);
+        
+        chatStep = 4;
+    } else if (chatStep === 4) {
+        // Skip role
+        userRole = 'Skipped';
+        document.querySelector('#user-role-message .message-bubble').textContent = 'I\'m opting for mystery';
+        showMessage('user-role-message');
+        hideSkipButton();
+        
+        // Send email with collected info
+        setTimeout(() => {
+            sendContactEmail();
+        }, 500);
+        
+        chatStep = 5;
+    }
+}
+
+function sendContactEmail() {
+    // Update form fields with collected data
+    document.getElementById('form-name').value = userName;
+    document.getElementById('form-email').value = userEmail;
+    document.getElementById('form-email-copy').value = userEmail;
+    document.getElementById('form-phone').value = userPhone;
+    document.getElementById('form-workplace').value = userWorkplace;
+    document.getElementById('form-role').value = userRole;
+    
+    // Create a message field for better email formatting
+    const messageField = document.createElement('input');
+    messageField.type = 'hidden';
+    messageField.name = 'message';
+    messageField.value = `New contact form submission:\n\nName: ${userName}\nEmail: ${userEmail}\nPhone: ${userPhone}\nWorkplace: ${userWorkplace}\nRole: ${userRole}`;
+    contactForm.appendChild(messageField);
+    
+    // Show final message first
+    document.querySelector('#final-message .message-bubble').textContent = 
+        `Great! I'll be in touch soon, ${userName}. Talk to you later!`;
+    showMessage('final-message');
+    
+    // Disable input after completion
+    chatInput.disabled = true;
+    sendButton.disabled = true;
+    skipButton.disabled = true;
+    chatInput.placeholder = 'Chat completed';
+    
+    // Submit form via AJAX to avoid page reload
+    setTimeout(() => {
+        const formData = new FormData(contactForm);
+        
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Form submitted successfully!');
+                // Optionally show a success message
+            } else {
+                console.error('Form submission failed');
+                // Fallback: try regular form submission
+                contactForm.submit();
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting form:', error);
+            // Fallback: try regular form submission
+            contactForm.submit();
+        });
+    }, 1000);
 }
 
 function handleChatInput() {
@@ -203,6 +327,7 @@ function handleChatInput() {
             
             setTimeout(() => {
                 showMessage('phone-question');
+                showSkipButton(); // Show skip button for phone
             }, 500);
             
             chatStep = 2;
@@ -226,35 +351,42 @@ function handleChatInput() {
             userPhone = input;
             document.querySelector('#user-phone-message .message-bubble').textContent = userPhone;
             showMessage('user-phone-message');
+            hideSkipButton();
             
-            document.querySelector('#final-message .message-bubble').textContent = 
-                `Great! I'll be in touch soon, ${userName}. Talk to you later!`;
-            showMessage('final-message');
-            
-            // Submit form data
-            document.getElementById('form-name').value = userName;
-            document.getElementById('form-email').value = userEmail;
-            document.getElementById('form-phone').value = userPhone;
-            
-            // Send email via mailto as fallback
-            const subject = encodeURIComponent('New Contact Form Submission from ' + userName);
-            const body = encodeURIComponent(
-                `Name: ${userName}\n` +
-                `Email: ${userEmail}\n` +
-                `Phone: ${userPhone}\n\n` +
-                `This message was sent via the BZS Software website contact form.`
-            );
-            
-            // Open mailto link
-            window.location.href = `mailto:bzane09@gmail.com?subject=${subject}&body=${body}`;
-            
-            // Disable input after completion
-            chatInput.disabled = true;
-            sendButton.disabled = true;
-            chatInput.placeholder = 'Chat completed';
+            setTimeout(() => {
+                showMessage('work-question');
+                showSkipButton(); // Show skip button for workplace
+            }, 500);
             
             chatStep = 3;
         }
+    } else if (chatStep === 3) {
+        // Workplace step
+        userWorkplace = input;
+        document.querySelector('#user-work-message .message-bubble').textContent = userWorkplace;
+        showMessage('user-work-message');
+        hideSkipButton();
+        
+        setTimeout(() => {
+            document.querySelector('#role-question .message-bubble').textContent = `What do you do at ${userWorkplace}?`;
+            showMessage('role-question');
+            showSkipButton(); // Show skip button for role
+        }, 500);
+        
+        chatStep = 4;
+    } else if (chatStep === 4) {
+        // Role step
+        userRole = input;
+        document.querySelector('#user-role-message .message-bubble').textContent = userRole;
+        showMessage('user-role-message');
+        hideSkipButton();
+        
+        // Send email with all collected info
+        setTimeout(() => {
+            sendContactEmail();
+        }, 500);
+        
+        chatStep = 5;
     }
     
     chatInput.value = '';
@@ -266,8 +398,33 @@ if (sendButton && chatInput) {
     
     chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent form submission
             handleChatInput();
+        }
+    });
+    
+    // Start chat when user clicks in the chat input area
+    chatInput.addEventListener('focus', () => {
+        if (!chatStarted) {
+            startChat();
+        }
+    });
+    
+    chatInput.addEventListener('click', () => {
+        if (!chatStarted) {
+            startChat();
         }
     });
 }
 
+// Event listener for skip button
+if (skipButton) {
+    skipButton.addEventListener('click', handleSkip);
+}
+
+// Prevent default form submission
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+    });
+}

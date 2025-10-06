@@ -113,6 +113,10 @@ body {
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: streamIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 1.2s;
 }
 
 /* Hero Carousel */

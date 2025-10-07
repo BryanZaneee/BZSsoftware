@@ -3,376 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BZS Software - Powerful Software Solutions</title>
+    <title>BZS Software - Site Under Construction</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg-light: #f5f5f0;
+            --color-bg-dark: #2d4a4a;
+            --color-text-dark: #1a1a1a;
+            --color-text-light: #ffffff;
+            --color-accent: #8bc34a;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .header {
+            padding: 30px 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-bg-light);
+            z-index: 1000;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 60px 60px;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: clamp(60px, 10vw, 140px);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .subtitle {
+            font-size: clamp(24px, 4vw, 40px);
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.5s;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.8s;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--color-accent);
+            color: var(--color-text-dark);
+            font-size: clamp(14px, 2vw, 18px);
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-badge {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--color-text-dark);
+            font-size: clamp(14px, 2vw, 18px);
+            font-weight: 600;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .marquee-section {
+            background-color: var(--color-bg-dark);
+            padding: 80px 0;
+            overflow: hidden;
+            margin-top: auto;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+            color: var(--color-text-light);
+            font-size: clamp(80px, 12vw, 160px);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+
+        .brand-text {
+            padding: 0 40px;
+        }
+
+        .brand-symbol {
+            color: var(--color-accent);
+            padding: 0 40px;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px 30px;
+            }
+
+            .main-container {
+                padding: 100px 30px 40px;
+            }
+
+            .main-title {
+                font-size: 50px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .badge-container {
+                margin-bottom: 60px;
+            }
+
+            .marquee-section {
+                padding: 60px 0;
+            }
+
+            .marquee-content {
+                font-size: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px 20px;
+            }
+
+            .main-container {
+                padding: 100px 20px 30px;
+            }
+
+            .main-title {
+                font-size: 40px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .status-badge {
+                font-size: 12px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <span class="logo-icon">✦</span>
-                    <span class="logo-text">BZS</span>
-                </div>
-                <nav class="nav">
-                    <a href="#about">About</a>
-                    <a href="#apps">Services</a>
-                    <a href="#contact">Contact</a>
-                </nav>
-            </div>
-        </div>
+        <img src="img/Group 5.png" alt="BZS Software Logo" class="logo-image">
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-left">
-                    <div class="showreel-card">
-                        <div class="hero-carousel">
-                            <img src="img/happy-freelance-worker-optimized.jpg" alt="Freelance worker using computer" class="carousel-image active">
-                            <img src="img/multi-ethnic-group-optimized.jpg" alt="Multi-ethnic group studying with laptop" class="carousel-image">
-                            <img src="img/glad-young-woman-optimized.jpg" alt="Young woman using mobile phone" class="carousel-image">
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-right">
-                    <h1 class="hero-title">
-                        <span class="hero-line hero-line-1">BOLD</span>
-                        <span class="hero-line hero-line-2">ZERO-HASSLE</span>
-                        <span class="hero-line hero-line-3">SOLUTIONS</span>
-                    </h1>
-                </div>
+    <div class="main-container">
+        <div class="content-wrapper">
+            <h1 class="main-title">THINGS ARE STILL COOKING</h1>
+            
+            <p class="subtitle">Don't worry! We're working hard to bring you something amazing.</p>
+            
+            <div class="badge-container">
+                <span class="status-badge">Under Construction</span>
             </div>
+        </div>
+    </div>
+
+    <section class="marquee-section">
+        <div class="marquee-content">
+            <span class="brand-text">BZSSOFTWARE</span>
+            <span class="brand-symbol">✦</span>
+            <span class="brand-text">COMING SOON</span>
+            <span class="brand-symbol">✦</span>
+            <span class="brand-text">BZSSOFTWARE</span>
+            <span class="brand-symbol">✦</span>
+            <span class="brand-text">COMING SOON</span>
+            <span class="brand-symbol">✦</span>
         </div>
     </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-text">
-                    Discover powerful software,<br>
-                    choose your solution, and<br>
-                    transform your workflow today.
-                </h2>
-                <div class="cta-links">
-                    <a href="#about" class="cta-link">About us <span class="arrow">→</span></a>
-                    <a href="#apps" class="cta-link">Explore Solutions <span class="arrow">→</span></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Brand Section -->
-    <section class="brand-section">
-        <div class="brand-marquee">
-            <div class="marquee-content">
-                <span class="brand-text">BZSSOFTWARE</span>
-                <span class="brand-symbol">✦</span>
-                <span class="brand-text">DIGITAL EXCELLENCE</span>
-                <span class="brand-symbol">✦</span>
-                <span class="brand-text">BZSSOFTWARE</span>
-                <span class="brand-symbol">✦</span>
-                <span class="brand-text">DIGITAL EXCELLENCE</span>
-                <span class="brand-symbol">✦</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <div class="container">
-            <div class="about-content">
-                <h3 class="section-title">About Us</h3>
-                <p class="about-intro">
-                    BZS Software creates intelligent solutions for modern problems. Each app is built to tackle 
-                    real challenges. From SOTA photo-editing to limitless AI conversations or spatial note-taking, 
-                    the focus is on crafting software that's both powerful and intuitive, eliminating resistance 
-                    between users and their goals.
-                </p>
-                
-                <div class="about-idealist">
-                    <h4 class="subsection-title">Our Idealist</h4>
-                    <p class="about-text">
-                        Great software isn't just about how it looks — it's about how it works. Every solution 
-                        is designed to understand the problem deeply, delivering technical excellence that feels 
-                        effortless to use. 
-                        <strong>Building for users who demand both sophistication and simplicity in their tools.</strong>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- App Showcase Marquee -->
-    <section class="app-marquee-section" id="apps">
-        <div class="brand-marquee">
-            <div class="marquee-content">
-                <span class="brand-text">OUR APPS</span>
-                <span class="brand-symbol">✦</span>
-                <span class="brand-text">YOUR SOLUTIONS</span>
-                <span class="brand-symbol">✦</span>
-                <span class="brand-text">OUR APPS</span>
-                <span class="brand-symbol">✦</span>
-                <span class="brand-text">YOUR SOLUTIONS</span>
-                <span class="brand-symbol">✦</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Shuttrr Section -->
-    <section class="app-section app-section-light">
-        <div class="container">
-            <div class="app-content">
-                <div class="app-number">01</div>
-                <div class="app-details">
-                    <h2 class="app-title">
-                        SHUTTRR 
-                        <svg class="app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                            <circle cx="12" cy="13" r="4"></circle>
-                        </svg>
-                        <span class="coming-soon-badge">Coming Soon</span>
-                    </h2>
-                    <p class="app-description">
-                        Cross-platform AI-powered photo editing with SOTA character consistency. 
-                        Transform your images with Photoshop-quality edits using 
-                        natural language commands. Available on iOS, Android, and Web. 
-                        Professional results, zero complexity.
-                    </p>
-                    <div class="app-tags">
-                        <span class="tag">AI Photo Editing</span>
-                        <span class="tag">Character Consistency</span>
-                        <span class="tag">Cross-Platform</span>
-                        <span class="tag">Natural Language</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- InfiniChat Section -->
-    <section class="app-section app-section-dark">
-        <div class="container">
-            <div class="app-content">
-                <div class="app-number">02</div>
-                <div class="app-details">
-                    <h2 class="app-title">
-                        INFINICHAT 
-                        <svg class="app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6.5 12c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5S6.5 14.5 6.5 12zm11 0c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5z"/>
-                            <path d="M6.5 12c0-2.5-2-4.5-4.5-4.5S-2.5 9.5-2.5 12s2 4.5 4.5 4.5 4.5-2 4.5-4.5z"/>
-                        </svg>
-                    </h2>
-                    <p class="app-description">
-                        Break free from traditional chatbot limits. InfiniChat delivers 
-                        AI conversations with significantly higher usage limits, enabling 
-                        deeper exploration and more meaningful interactions.
-                    </p>
-                    <div class="app-tags">
-                        <span class="tag">AI Chat</span>
-                        <span class="tag">Unlimited Conversations</span>
-                        <span class="tag">Advanced AI</span>
-                    </div>
-                    <a href="https://infinichat.ai" target="_blank" rel="noopener noreferrer" class="live-app-button">
-                        <span class="button-text">LiveApp</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Anywhere Section -->
-    <section class="app-section app-section-accent">
-        <div class="container">
-            <div class="app-content">
-                <div class="app-number">03</div>
-                <div class="app-details">
-                    <h2 class="app-title">
-                        ANYWHERE 
-                        <svg class="app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
-                            <path d="M2 2l7.586 7.586"></path>
-                            <circle cx="11" cy="11" r="2"></circle>
-                        </svg>
-                    </h2>
-                    <p class="app-description">
-                        Open-source note-taking reimagined. Write your notes anywhere 
-                        on the page with complete freedom. No grids, no constraints—just 
-                        pure creative expression for your thoughts.
-                    </p>
-                    <div class="app-tags">
-                        <span class="tag">Open Source</span>
-                        <span class="tag">Spatial Notes</span>
-                        <span class="tag">Creative Freedom</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Chat Section -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <div class="contact-chat-wrapper">
-                <div class="chat-container">
-                    <div class="chat-message bot-message">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble">Want to work together? Click here to send a message.</div>
-                    </div>
-                    
-                    <div class="chat-message bot-message">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble">
-                            You can also reach out to me via email, at 
-                            <a href="mailto:bzane09@gmail.com" class="chat-link">bzane09@gmail.com</a>, 
-                            or by phone at 
-                            <a href="tel:+13215781169" class="chat-link">+1 321-578-1169</a>.
-                        </div>
-                    </div>
-                    
-                    <div class="chat-message user-message" id="lets-do-it-message" style="display: none;">
-                        <div class="message-bubble">Let's do it!</div>
-                    </div>
-                    
-                    <div class="chat-message bot-message" id="name-question" style="display: none;">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble">What is your name?</div>
-                    </div>
-                    
-                    <div class="chat-message user-message" id="user-name-message" style="display: none;">
-                        <div class="message-bubble"></div>
-                    </div>
-                    
-                    <div class="chat-message bot-message" id="greeting-message" style="display: none;">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble"></div>
-                    </div>
-                    
-                    <div class="chat-message bot-message" id="email-question" style="display: none;">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble">What is your email address?</div>
-                    </div>
-                    
-                    <div class="chat-message user-message" id="user-email-message" style="display: none;">
-                        <div class="message-bubble"></div>
-                    </div>
-                    
-                    <div class="chat-message bot-message" id="email-validation" style="display: none;">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble"></div>
-                    </div>
-                    
-                    <div class="chat-message bot-message" id="phone-question" style="display: none;">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble">And lastly, what is your phone number?</div>
-                    </div>
-                    
-                    <div class="chat-message user-message" id="user-phone-message" style="display: none;">
-                        <div class="message-bubble"></div>
-                    </div>
-                    
-                    <div class="chat-message bot-message" id="phone-validation" style="display: none;">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble"></div>
-                    </div>
-                    
-                    <div class="chat-message bot-message" id="work-question" style="display: none;">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble">Where do you currently work?</div>
-                    </div>
-                    
-                    <div class="chat-message user-message" id="user-work-message" style="display: none;">
-                        <div class="message-bubble"></div>
-                    </div>
-                    
-                    <div class="chat-message bot-message" id="role-question" style="display: none;">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble"></div>
-                    </div>
-                    
-                    <div class="chat-message user-message" id="user-role-message" style="display: none;">
-                        <div class="message-bubble"></div>
-                    </div>
-                    
-                    <div class="chat-message bot-message" id="final-message" style="display: none;">
-                        <div class="message-avatar">
-                            <span class="avatar-indicator"></span>
-                        </div>
-                        <div class="message-bubble"></div>
-                    </div>
-                </div>
-                
-                <!-- Contact form sends directly to your email via Formspree -->
-                <form id="contact-form" class="chat-input-wrapper" action="https://formspree.io/f/xjkaojoz" method="POST">
-                    <input type="hidden" name="name" id="form-name">
-                    <input type="hidden" name="_replyto" id="form-email">
-                    <input type="hidden" name="email" id="form-email-copy">
-                    <input type="hidden" name="phone" id="form-phone">
-                    <input type="hidden" name="workplace" id="form-workplace">
-                    <input type="hidden" name="role" id="form-role">
-                    <input type="text" class="chat-input" id="chat-input" placeholder="Type here">
-                    <button type="button" class="chat-skip-button" id="skip-button" style="display: none;">Skip question</button>
-                    <button type="button" class="chat-send-button" id="send-button">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="logo">
-                        <span class="logo-icon">✦</span>
-                        <span class="logo-text">BZS</span>
-                    </div>
-                    <p class="footer-tagline">Building seamless digital experiences</p>
-                    <p class="footer-personal">
-                        <a href="mailto:bzane09@gmail.com" class="footer-link">bzane09@gmail.com</a> • 
-                        <a href="tel:+13215781169" class="footer-link">+1 321-578-1169</a>
-                    </p>
-                    <p class="footer-personal">more about me? Check out my <a href="https://bryanzane.com" target="_blank" rel="noopener noreferrer" class="footer-link">personal website</a></p>
-                </div>
-                <div class="footer-right">
-                    <p>&copy; 2025 BZS Software. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>

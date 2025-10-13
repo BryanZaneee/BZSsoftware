@@ -64,6 +64,17 @@ body {
     gap: 12px;
 }
 
+.logo-image {
+    height: 40px;
+    width: auto;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.logo-image:hover {
+    opacity: 0.8;
+}
+
 .logo-icon {
     color: var(--color-accent);
     font-size: 20px;

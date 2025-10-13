@@ -697,6 +697,10 @@ body {
     margin-bottom: 10px;
 }
 
+.footer .logo-image {
+    filter: brightness(0) invert(1);
+}
+
 .footer-tagline {
     font-size: 14px;
     opacity: 0.7;
